@@ -1,0 +1,197 @@
+INSERT INTO <table_name> (column1, column2, ...)
+VALUES (value1, value2, ...),
+       (value1, value2, ...);
+    :- Add data into the table. 
+    INSERT INTO cats (name, age) 
+    VALUES ('Tom', 7),
+            ('Jim', 8);
+    **********output*********
+        Query executed OK, 2 rows affected.
+    *************************
+
+    Columns are not required if adding data in entire table
+    INSERT INTO cats
+    VALUES ('Bob', 2);
+    **********output*********
+        Query executed OK, 1 rows affected.
+    *************************
+
+
+
+
+
+NULL
+    Not known.No value.
+    Does not mean Zero
+
+    INSERT INTO cats
+    VALUES ()
+    **********output*********
+        Query executed OK, 1 rows affected.
+    *************************
+
+    INSERT INTO cats (name)
+    VALUES ('bom')
+    **********output*********
+        Query executed OK, 1 rows affected.
+    *************************
+
+    We can see null values 
+    SELECT *
+    FROM `cats`;
+    **********output*********
+        name	age
+        Tom	    7
+        Jim	    8
+        Bob	    2
+        NULL	NULL
+        bom	    NULL
+    *************************
+
+    This is because we can see in schema that Null is allowed for both columns 
+    DESC `cats`
+    **********output*********
+        Field	Type	    Null	Key	 Default	Extra
+        name	varchar(50)	YES		      NULL	
+        age	    int(11)	    YES		      NULL	
+    *************************
+
+Solution :- NOT NULL
+
+    CREATE TABLE dogs (
+        name VARCHAR(50) NOT NULL,
+        age INT NOT NULL
+    );
+
+    DESC `dogs`
+    **********output*********
+        Field	Type	    Null	Key	 Default	Extra
+        name	varchar(50)	NO		      NULL	
+        age	    int(11)	    NO		      NULL	
+    *************************
+
+    INSERT INTO dogs
+    VALUES ();
+
+    SELECT *
+    FROM `dogs`;
+
+    **********output*********
+        name	age
+                0
+    *************************
+
+    Now we see that there is no null values. But the name is empty and age is 0. Will be solved using Default values.
+
+
+
+
+DEFAULT
+    :- If no value is specified the DEFAULT value of a column is a used.
+    CREATE TABLE rats (    
+        name VARCHAR(50) NOT NULL DEFAULT 'mystery',    
+        age INT NOT NULL DEFAULT 99 
+    );
+
+
+    DESC `rats`
+    **********output*********
+        Field	Type	    Null	Key	 Default	Extra
+        name	varchar(50)	NO		      mystery	
+        age	    int(11)	    NO		      99	
+    *************************
+
+    INSERT INTO rats
+    VALUES ();
+
+    SELECT *
+    FROM `rats`;
+
+    **********output*********
+        name	age
+        mystery	99
+    *************************
+
+
+
+
+Primary Key
+    :- A unique identifier
+    -- One way of specifying a PRIMARY KEY
+
+    CREATE TABLE unique_rats (
+        rat_id INT PRIMARY KEY,
+        name VARCHAR(50) NOT NULL DEFAULT 'mystery',    
+        age INT NOT NULL DEFAULT 99 
+    );
+
+    -- Another option --
+
+    CREATE TABLE unique_rats2 (
+        rat_id INT,
+        name VARCHAR(50) NOT NULL DEFAULT 'mystery',    
+        age INT NOT NULL DEFAULT 99 
+        PRIMARY KEY (rat_id)
+    );
+
+    DESC `unique_rats`
+    **********output*********
+        Field	Type	    Null	Key	 Default	Extra
+        rat_id	int(11)	    NO	    PRI	  NULL
+        name	varchar(50)	NO		      mystery	
+        age	    int(11)	    NO		      99	
+    *************************
+
+    INSERT INTO unique_rats
+    VALUES (1, 'Tom', 7),
+           (99, 'Jim', 8);
+
+
+    SELECT *
+    FROM `unique_rats`;
+    **********output*********
+        rat_id	name	age
+        1	    Tom	    7
+        99	    Jim	    8
+    *************************
+
+    INSERT INTO unique_rats
+    VALUES (1, 'Tom', 7);
+    **********output*********
+        Error in query (1062): Duplicate entry '1' for key 'PRIMARY'
+    *************************
+    Now we see that there is rat_id column which will be always unique. But the rat_id is having number which are not in squence and we have to provide it each time. Will be solved using Auto Increment.
+
+
+
+AUTO_INCREMENT
+    :- Generates unique number automatically. By default, the starting value for AUTO_INCREMENT is 1, and it will increment by 1 for each new record.
+    AUTO_INCREMENT can be used with INTEGER field only.
+    CREATE TABLE unique_rats2 (
+        rat_id INT PRIMARY KEY AUTO_INCREMENT,
+        name VARCHAR(50) NOT NULL DEFAULT 'mystery',    
+        age INT NOT NULL DEFAULT 99 
+    );
+
+
+    DESC `unique_rats2`
+    **********output*********
+        Field	Type	    Null	Key	 Default	Extra
+        rat_id	int(11)	    NO	    PRI	  NULL      auto_increment
+        name	varchar(50)	NO		      mystery	
+        age	    int(11)	    NO		      99	
+    *************************
+
+    INSERT INTO unique_rats2 (name, age)
+    VALUES ('Tom', 7),
+           ('Jim', 8);
+
+
+    SELECT *
+    FROM `unique_rats2`;
+    **********output*********
+        rat_id	name	age
+        1	    Tom	    7
+        2	    Jim	    8
+    *************************
+

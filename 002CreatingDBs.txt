@@ -1,0 +1,68 @@
+show databases;
+    :- To list available databases.
+    **********output*********
+        Database
+        information_schema
+        mysql
+        performance_schema
+        sys
+    *************************
+
+
+
+
+CREATE DATABASE <database_name>;
+    :- To create a database.
+    CREATE DATABASE soap_store;
+    **********output*********
+        Query executed OK, 1 row affected.
+    *************************
+    
+    To verify if soap_store db is present.
+    show databases;
+    **********output*********
+        Database
+        information_schema
+        mysql
+        performance_schema
+        soap_store
+        sys
+    *************************
+
+    Use underscores or camelcase or uppercase for db names.
+    Dont use space between words in db name.
+    As far as possible capitilize SQL keywords only for reading purpose. Case does not matter.
+
+
+
+
+DROP DATABASE <database-name>;
+    :- To drop a database.
+    DROP DATABASE soap_store;
+    **********output*********
+        Query executed OK, 0 rows affected.
+    *************************
+
+
+
+
+USE <database-name>;
+    :- To select a database that will be using to run query.
+    USE soap_store;
+    **********output*********
+        Query executed OK, 0 rows affected.
+    *************************
+
+
+
+
+SELECT database()
+    :- To check currently selected db.
+    SELECT database()
+    **********output*********
+        database()
+        soap_store
+    *************************
+
+
+

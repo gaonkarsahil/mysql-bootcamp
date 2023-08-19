@@ -1,0 +1,77 @@
+Tables
+    Holds the data.
+    A collection of related data held in a structured format within a database.
+    A collection of columns(headers) and rows (actual data)
+
+
+
+
+Data Types
+    Tells which column will hold what type of data.
+    Name must be text, Age must be a number.
+
+
+
+
+// CREATE DATABASE pet_store;
+
+
+
+
+CREATE TABLE <table-name> (
+    <column-name-1> <data-type>,
+    <column-name-2> <data-type>
+);
+    :- To create a table.
+    CREATE TABLE cats (
+        name VARCHAR(50),
+        age INT
+    );
+    **********output*********
+        Query executed OK, 0 rows affected.
+    *************************
+    
+
+
+
+show tables;
+    :- To list available tables.
+    **********output*********
+        Tables_in_pet_store
+        cats
+    *************************
+
+
+
+
+SHOW COLUMNS FROM cats;
+    :- To show columns and data types used by table.
+    **********output*********
+        Field	Type	    Null	Key	 Default	Extra
+        name	varchar(50)	YES		      NULL	
+        age	    int(11)	    YES		      NULL	
+    *************************
+
+DESC cats;
+    :- same as above
+
+
+
+
+DROP TABLE <table-name>;
+    :- To drop a table.
+    DROP TABLE cats;
+    **********output*********
+        Query executed OK, 0 rows affected
+    *************************
+
+    DESC soap_store;
+    **********output*********
+        Error in query (1146): Table 'pet_store.soap_store' doesn't exist
+    *************************
+
+
+
+
+MySQL Comments
+    Use # or -- or CTRL + /

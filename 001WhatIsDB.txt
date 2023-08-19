@@ -1,0 +1,17 @@
+What Is A Database?
+    1. A collection of data
+    2. A method for accessing and manipulating that data
+
+App -> DBMS -> Database
+App will communicate to Database using DBMS
+
+[DBMS -> Database] examples :- MySQL, Oracle Database, PostgreSQL, SQLite
+
+SQL :- Structured Query Language
+    SQL is the language we use to "talk" to our databases
+
+    Two Takeaways
+    1. Once you learn SQL, it's pretty easy to switch to another DB that uses SQL
+    2. What makes databases (DBMS) unique are the features they offer, not the language
+
+
